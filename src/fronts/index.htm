@@ -5,31 +5,39 @@
     <meta charset="UTF-8" />
     <title>Dummy API Test</title>
 
-    <!-- CSS 파일 연결 -->
+    <!-- 화면 꾸미기용 CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <h2>POST /posts 테스트</h2>
 
+    <!-- 사용자 입력값 -->
     <input id="title" placeholder="title" />
     <input id="body" placeholder="body" />
     <button id="sendBtn">POST 보내기</button>
 
+    <!-- POST 결과 출력 -->
     <pre id="result"></pre>
 
     <hr />
 
     <h2>GET /hello 테스트</h2>
     <button id="helloBtn">보노보노 너부리 부르기 시전</button>
+
+    <!-- GET 결과 출력 -->
     <pre id="helloResult"></pre>
+
+    <!-- 그냥 이미지 (기능 없음) -->
     <img
-        src="https://blog.kakaocdn.net/dna/O4N5I/btqveI3WCI2/AAAAAAAAAAAAAAAAAAAAAAWqRzC1_8geLqzL1ZgSxKGaIM2qFoGoPHZ6qnOytJc5/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=xvMXssP90gfdbgX0kbqur4kmDg0%3D" />
+        src="https://blog.kakaocdn.net/dna/O4N5I/btqveI3WCI2/AAAAAAAAAAAAAAAAAAAAAAWqRzC1_8geLqzL1ZgSxKGaIM2qFoGoPHZ6qnOytJc5/img.jpg" />
 
     <script>
+        // 결과를 화면에 보여줄 영역
         const result = document.getElementById("result");
         const helloResult = document.getElementById("helloResult");
 
+        // POST /posts 요청
         document.getElementById("sendBtn").addEventListener("click", async () => {
             const title = document.getElementById("title").value;
             const body = document.getElementById("body").value;
@@ -39,6 +47,7 @@
                 headers: {
                     "Content-Type": "application/json"
                 },
+                // JS 객체 → JSON 문자열 (직렬화)
                 body: JSON.stringify({ title, body })
             });
 
@@ -46,6 +55,7 @@
             result.textContent = JSON.stringify(data, null, 2);
         });
 
+        // GET /hello 요청
         document.getElementById("helloBtn").addEventListener("click", async () => {
             const response = await fetch("http://localhost:5000/hello");
             const text = await response.text();
