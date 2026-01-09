@@ -10,5 +10,5 @@ import requests
 
 #     assert response.status_code == 200
 
-#     # /hello 는 문자열만 내려준다고 가정
-#     assert response.text == "hello"
+    # /hello 는 문자열만 내려준다고 가정
+   # assert response.text == "hello"
